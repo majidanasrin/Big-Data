@@ -1,0 +1,7 @@
+2hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ hdfs dfs -cat /user/hadoop/output/part-r-00000
+2010	35
+2011	31
+2012	30
+2013	28
+2014	29
+
