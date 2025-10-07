@@ -1,0 +1,6 @@
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ hdfs dfs -cat /user/hadoop/matrix_output/part-r-00000
+0,0	19.0
+0,1	22.0
+1,0	43.0
+1,1	50.0
+
