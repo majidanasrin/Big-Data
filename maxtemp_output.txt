@@ -1,0 +1,21 @@
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ nano weather.csv
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$  pig -x local
+grunt> weather_data = LOAD 'weather.csv'
+>>     USING PigStorage(',')
+>>     AS (date:chararray, meantemp:float, humidity:float, wind_speed:float, meanpressure:float);
+grunt> no_header = FILTER weather_data BY date != 'date';
+grunt> with_year = FOREACH no_header GENERATE
+grunt>     SUBSTRING(date, 0, 4) AS year,
+>>     meantemp;
+grunt> grouped_by_year = GROUP with_year BY year;
+grunt> max_temp_by_year = FOREACH grouped_by_year GENERATE
+grunt>     group AS year,
+>>     MAX(with_year.meantemp) AS max_temp;
+grunt> DUMP max_temp_by_year;
+2013,38.714287
+2014,38.5
+2015,37.75
+2016,38.272728
+2017,10.0
+grunt> STORE max_temp_by_year INTO 'output/max_temp_by_year' USING PigStorage(',');
+grunt> cat output/max_temp_by_year/part-r-00000

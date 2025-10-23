@@ -1,0 +1,19 @@
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ pig
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ echo -e "3\n1\n5\n2\n6\n4\n8" > input.txtput.txt
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ hdfs dfs -mkdir -p /user/hadoop/input
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ hdfs dfs -put -f input.txt /user/hadoop/input/
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$  hdfs dfs -ls /user/hadoop/input/
+Found 3 items
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ nano sort_array.pig
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ pig sort_array.pig
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ hdfs dfs -ls /user/hadoop/output/sorted
+Found 2 items
+hadoop@majida-Standard-PC-Q35-ICH9-2009:~$ hdfs dfs -cat /user/hadoop/output/sorted/part-r-00000
+1
+2
+3
+4
+5
+6
+8
+
